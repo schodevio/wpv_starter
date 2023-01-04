@@ -12,6 +12,7 @@ $wpv_inc_dir = 'inc';
 $wpv_includes = array(
 	'/setup.php',         // Theme setup
 	'/enqueue.php',				// Scripts and styles
+	'/utils.php'					// Theme utils
 );
 
 // Include files.

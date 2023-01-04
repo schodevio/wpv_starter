@@ -5,26 +5,38 @@
  * @package wpv
  */
 
+function add_stylesheet( $name, $src_path ) {
+  wp_enqueue_style(
+    $name, get_template_directory_uri() . $src_path,
+    array(), filemtime( get_stylesheet_directory() . $src_path )
+  );
+}
+
+function add_script( $name, $src_path ) {
+  wp_enqueue_script(
+    $name, get_template_directory_uri() . $src_path,
+    array(), filemtime( get_stylesheet_directory() . $src_path )
+  );
+}
+
 if ( ! function_exists( 'wpv_assets' ) ) {
   // Load theme's JavaScript and CSS sources
   function wpv_assets() {
     wp_enqueue_style( 'style', get_stylesheet_uri() );
 
-    // Styles
-    // wp_enqueue_style(
-    //   'wpv-styles',
-    //   get_template_directory_uri() . '/assets/dist/index.min.css',
-    //   array(),
-    //   filemtime( get_stylesheet_directory() . '/assets/dist/index.min.css' )
-    // );
+    /*
+     * Main
+     */
+    add_stylesheet( 'wpv-main-style', '/src/dist/main.min.css' );
+    add_script( 'wpv-main-script', '/src/dist/main.min.js' );
 
-    // Scripts
-    // wp_enqueue_script(
-    //   'wpv-scripts',
-    //   get_template_directory_uri() . '/assets/dist/main.js',
-    //   array(),
-    //   filemtime( get_stylesheet_directory() . '/assets/dist/index.min.css' )
-    // );
+    /*
+     * Page template
+     */
+    if ( is_page() ) {
+      add_stylesheet( 'wpv-page-style', '/src/dist/hello_world.min.css' );
+      add_script( 'wpv-page-script', '/src/dist/hello_world.min.js' );
+    }
   }
 }
 

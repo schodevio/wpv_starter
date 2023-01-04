@@ -1,6 +1,6 @@
 <?php
 /**
- * The main template file
+ * The page template
  *
  * @package wpv
  */
@@ -9,7 +9,8 @@ get_header();
 
 ?>
 
-<h1>Hello Theme!</h1>
+<h1>Hello Page!</h1>
+<div id="app"></div>
 
 <?php
   get_footer();
